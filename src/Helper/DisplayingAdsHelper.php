@@ -154,7 +154,7 @@ final class DisplayingAdsHelper
 	 *
 	 * @since  4.2
 	 */
-	public function __isset($name)
+	public function __isset($name): bool
 	{
 		return isset($this->data[$name]);
 	}
@@ -192,6 +192,9 @@ final class DisplayingAdsHelper
 	 */
 	public function canShowBlock(): bool
 	{
+		if($this->test_mode === 1) {
+			return true;
+		}
 		return self::$app->input->cookie->get($this->cookie_id) === null;
 	}
 
